@@ -23,14 +23,11 @@ jobs:
           conda install pandas -c conda-forge -c bioconda -y
           conda install conda-pack -c conda-forge -c bioconda -y
           conda env list
-      - name: download
-        run: |
           s=kneaddata
           wget -c ftp://download.nmdc.cn/tools/conda/${s}.tar.gz
           soft=~/miniconda3
           mkdir -p ${soft}/envs/${s}
           tar -xvzf ${s}.tar.gz -C ${soft}/envs/${s}
-          conda init
           conda activate ${s}
           conda unpack
       - name: software version
