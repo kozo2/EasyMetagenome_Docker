@@ -2,7 +2,7 @@ FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update -qq && \
-    apt install -y --no-install-recommends wget ca-certificates && \
+    apt install -y --no-install-recommends wget ca-certificates unzip && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
 
