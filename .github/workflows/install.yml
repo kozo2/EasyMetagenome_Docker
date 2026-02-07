@@ -1,40 +1,16 @@
-name: foo
+name: Dockerfile Build Check
 on:
   push:
     branches:
       - main
 
 jobs:
-  hoge:
+  docker-build-check:
     runs-on: ubuntu-latest
     steps:
-      - name: conda
-        run: |
-          wget -c https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-          bash Miniconda3-latest-Linux-x86_64.sh -b -f 
-          ~/miniconda3/condabin/conda init
-          eval "$($HOME/miniconda3/bin/conda shell.bash hook)"
-          conda config --add channels bioconda
-          conda config --add channels conda-forge
-          conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
-          conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
-          conda config --show-sources
-          conda install mamba -c conda-forge -c bioconda -y
-          conda install pandas -c conda-forge -c bioconda -y
-          conda install conda-pack -c conda-forge -c bioconda -y
-          conda env list
-          s=kneaddata
-          wget -c ftp://download.nmdc.cn/tools/conda/${s}.tar.gz
-          soft=~/miniconda3
-          mkdir -p ${soft}/envs/${s}
-          tar -xvzf ${s}.tar.gz -C ${soft}/envs/${s}
-          conda activate ${s}
-          conda unpack
-          fastp --version # 1.0.1
-          kneaddata --version # 0.12.3
-          bowtie2 --version # 2.5.4
-          fastqc -v # v0.12.1
-          trimmomatic -version # 0.40
-          multiqc --version  # 1.321
-          kneaddata_database
-          
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Build Dockerfile
+        run: docker build -f Dockerfile -t test .
+        
