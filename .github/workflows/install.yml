@@ -20,8 +20,8 @@ jobs:
           conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
           conda config --show-sources
           conda install mamba -c conda-forge -c bioconda -y
-          mamba install pandas -c conda-forge -c bioconda -y
-          mamba install conda-pack -c conda-forge -c bioconda -y
+          conda install pandas -c conda-forge -c bioconda -y
+          conda install conda-pack -c conda-forge -c bioconda -y
           conda env list
       - name: download
         run: |
