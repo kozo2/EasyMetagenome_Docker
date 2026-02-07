@@ -30,6 +30,7 @@ jobs:
           soft=~/miniconda3
           mkdir -p ${soft}/envs/${s}
           tar -xvzf ${s}.tar.gz -C ${soft}/envs/${s}
+          conda init
           conda activate ${s}
           conda unpack
       - name: software version
