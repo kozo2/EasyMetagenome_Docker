@@ -30,8 +30,6 @@ jobs:
           tar -xvzf ${s}.tar.gz -C ${soft}/envs/${s}
           conda activate ${s}
           conda unpack
-      - name: software version
-        run: |
           fastp --version # 1.0.1
           kneaddata --version # 0.12.3
           bowtie2 --version # 2.5.4
