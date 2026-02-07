@@ -36,7 +36,5 @@ jobs:
           fastqc -v # v0.12.1
           trimmomatic -version # 0.40
           multiqc --version  # 1.321
-      - name: dbdownload
-        run: |
           kneaddata_database
           
